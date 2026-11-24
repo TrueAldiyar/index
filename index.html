@@ -1,0 +1,1638 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Юридический словарь простыми словами</title>
+  <style>
+    :root {
+      --bg-page: #f0ece1;
+      --bg-surface: #ffffff;
+      --bg-elevated: #f8f5ec;
+      --bg-header: rgba(11, 22, 52, 0.94);
+      --bg-footer: #081026;
+      --text-main: #11192e;
+      --text-muted: #52607a;
+      --text-on-dark: #f8fafc;
+      --text-on-dark-muted: #cbd5e1;
+      --primary: #143275;
+      --accent-blue: #2563eb;
+      --gold: #d4af37;
+      --gold-soft: rgba(212, 175, 55, 0.16);
+      --border: #dcd4c0;
+      --border-dark: rgba(212, 175, 55, 0.25);
+      --shadow-card: 0 12px 30px -10px rgba(15, 32, 75, 0.16);
+      --shadow-glow: 0 20px 40px -12px rgba(212, 175, 55, 0.35);
+      --transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    [data-theme="dark"] {
+      --bg-page: #070d19;
+      --bg-surface: #10192e;
+      --bg-elevated: #17233f;
+      --bg-header: rgba(6, 10, 22, 0.94);
+      --bg-footer: #040711;
+      --text-main: #f1f5f9;
+      --text-muted: #94a3b8;
+      --text-on-dark: #f8fafc;
+      --text-on-dark-muted: #94a3b8;
+      --primary: #facc15;
+      --accent-blue: #60a5fa;
+      --gold: #eab308;
+      --gold-soft: rgba(234, 179, 8, 0.16);
+      --border: #22304d;
+      --border-dark: rgba(234, 179, 8, 0.25);
+      --shadow-card: 0 14px 32px -10px rgba(0, 0, 0, 0.65);
+      --shadow-glow: 0 20px 42px -10px rgba(234, 179, 8, 0.24);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+      background-color: var(--bg-page);
+      background-image:
+        radial-gradient(circle at 8% 12%, rgba(212, 175, 55, 0.18) 0%, transparent 32%),
+        radial-gradient(circle at 92% 18%, rgba(37, 99, 235, 0.14) 0%, transparent 36%),
+        radial-gradient(circle at 50% 90%, rgba(16, 185, 129, 0.08) 0%, transparent 40%);
+      color: var(--text-main);
+      line-height: 1.5;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      transition: background-color 0.35s ease, color 0.35s ease;
+    }
+
+    .container {
+      max-width: 1180px;
+      margin: 0 auto;
+      padding: 0 18px;
+      width: 100%;
+    }
+
+    header {
+      background: var(--bg-header);
+      backdrop-filter: blur(12px);
+      border-bottom: 2px solid var(--gold);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2);
+    }
+
+    .nav-wrap {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      min-height: 62px;
+      flex-wrap: wrap;
+      gap: 12px;
+      padding: 6px 0;
+    }
+
+    .logo {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 800;
+      font-size: 1.08rem;
+      color: #ffffff;
+      text-decoration: none;
+      cursor: pointer;
+    }
+
+    .logo-icon {
+      width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      background: linear-gradient(135deg, #fde047, #b45309);
+      display: grid;
+      place-items: center;
+      color: #081026;
+      box-shadow: 0 0 16px rgba(250, 204, 21, 0.45);
+      animation: pulseGold 3s infinite ease-in-out;
+    }
+
+    @keyframes pulseGold {
+      0%, 100% { box-shadow: 0 0 12px rgba(250, 204, 21, 0.35); }
+      50% { box-shadow: 0 0 22px rgba(250, 204, 21, 0.7); }
+    }
+
+    .header-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+    }
+
+    .page-tabs {
+      display: flex;
+      gap: 6px;
+      flex-wrap: wrap;
+    }
+
+    .tab-link {
+      background: transparent;
+      border: 1px solid transparent;
+      color: #e2e8f0;
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-size: 0.86rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .tab-link:hover {
+      color: #fde047;
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .tab-link.active {
+      background: linear-gradient(135deg, rgba(234, 179, 8, 0.25), rgba(37, 99, 235, 0.25));
+      border-color: var(--gold);
+      color: #fef08a;
+    }
+
+    .lang-group {
+      display: inline-flex;
+      border: 1px solid rgba(234, 179, 8, 0.5);
+      border-radius: 8px;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.06);
+    }
+
+    .lang-btn {
+      border: none;
+      background: transparent;
+      color: #e2e8f0;
+      padding: 5px 9px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .lang-btn.active,
+    .lang-btn:hover {
+      background: #eab308;
+      color: #081026;
+    }
+
+    .theme-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 12px;
+      border-radius: 8px;
+      border: 1px solid rgba(234, 179, 8, 0.55);
+      background: rgba(255, 255, 255, 0.08);
+      color: #fef08a;
+      font-size: 0.82rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .theme-btn:hover {
+      background: rgba(234, 179, 8, 0.22);
+      transform: translateY(-1px);
+    }
+
+    main {
+      flex: 1;
+      padding: 22px 0 34px;
+    }
+
+    .page-view {
+      display: none;
+      animation: pageEnter 0.45s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    .page-view.active {
+      display: block;
+    }
+
+    @keyframes pageEnter {
+      from {
+        opacity: 0;
+        transform: translateY(16px) scale(0.985);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    .hero-banner {
+      background: linear-gradient(125deg, #0d1f4b 0%, #1e3a8a 45%, #312e81 78%, #1e1b4b 100%);
+      border: 1px solid rgba(250, 204, 21, 0.45);
+      border-radius: 20px;
+      padding: 24px 28px;
+      color: #ffffff;
+      margin-bottom: 22px;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 20px 45px -15px rgba(13, 31, 75, 0.45);
+    }
+
+    .hero-banner::before {
+      content: "";
+      position: absolute;
+      top: -60px;
+      right: -60px;
+      width: 240px;
+      height: 240px;
+      background: radial-gradient(circle, rgba(250, 204, 21, 0.28) 0%, transparent 70%);
+      border-radius: 50%;
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.4fr 0.6fr;
+      gap: 20px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(250, 204, 21, 0.16);
+      border: 1px solid rgba(250, 204, 21, 0.5);
+      color: #fde047;
+      padding: 4px 12px;
+      border-radius: 999px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      margin-bottom: 8px;
+    }
+
+    h1 {
+      font-size: 1.75rem;
+      line-height: 1.18;
+      margin-bottom: 8px;
+      background: linear-gradient(90deg, #ffffff 0%, #fef08a 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .hero-sub {
+      color: #dbeafe;
+      font-size: 0.92rem;
+      margin-bottom: 14px;
+      max-width: 620px;
+    }
+
+    .search-wrap input {
+      width: 100%;
+      max-width: 580px;
+      padding: 11px 16px;
+      border-radius: 12px;
+      border: 2px solid rgba(250, 204, 21, 0.4);
+      background: var(--bg-surface);
+      color: var(--text-main);
+      font-size: 0.94rem;
+      outline: none;
+      transition: var(--transition);
+    }
+
+    .search-wrap input:focus {
+      border-color: #fde047;
+      box-shadow: 0 0 0 4px rgba(250, 204, 21, 0.25);
+    }
+
+    .hero-actions {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(250, 204, 21, 0.35);
+      padding: 15px;
+      border-radius: 16px;
+      backdrop-filter: blur(8px);
+    }
+
+    .quiz-promo-btn {
+      padding: 10px 16px;
+      border-radius: 10px;
+      border: none;
+      background: linear-gradient(135deg, #facc15, #d97706);
+      color: #081026;
+      font-weight: 800;
+      font-size: 0.88rem;
+      cursor: pointer;
+      transition: var(--transition);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .quiz-promo-btn:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 10px 22px rgba(245, 158, 11, 0.4);
+    }
+
+    .section-title {
+      font-size: 1.25rem;
+      color: var(--primary);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    /* 3D Tilt плитки отраслей на главной */
+    .branch-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(310px, 1fr));
+      gap: 16px;
+      perspective: 1200px;
+    }
+
+    .branch-portal {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px 20px;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      box-shadow: var(--shadow-card);
+      transition: transform 0.18s ease-out, box-shadow 0.25s ease, border-color 0.25s ease;
+      transform-style: preserve-3d;
+      will-change: transform;
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .branch-portal::after {
+      content: "→";
+      margin-left: auto;
+      font-size: 1.2rem;
+      font-weight: 800;
+      color: var(--gold);
+      transform: translateZ(18px);
+    }
+
+    .branch-portal:hover {
+      border-color: var(--gold);
+      box-shadow: var(--shadow-glow);
+    }
+
+    .branch-icon-box {
+      width: 48px;
+      height: 48px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      color: #ffffff;
+      flex-shrink: 0;
+      transform: translateZ(20px);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
+    }
+
+    .branch-info {
+      transform: translateZ(12px);
+    }
+
+    .branch-info h3 {
+      font-size: 1.04rem;
+      color: var(--text-main);
+      margin-bottom: 3px;
+    }
+
+    .branch-info p {
+      font-size: 0.82rem;
+      color: var(--text-muted);
+    }
+
+    .cat-page-header {
+      border-radius: 18px;
+      padding: 20px 24px;
+      color: #ffffff;
+      margin-bottom: 18px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      box-shadow: 0 16px 36px -12px rgba(0, 0, 0, 0.35);
+    }
+
+    .breadcrumb {
+      font-size: 0.8rem;
+      color: rgba(255, 255, 255, 0.85);
+      margin-bottom: 4px;
+    }
+
+    .back-home-btn {
+      background: rgba(255, 255, 255, 0.16);
+      border: 1px solid rgba(255, 255, 255, 0.45);
+      color: #ffffff;
+      padding: 8px 15px;
+      border-radius: 10px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      cursor: pointer;
+      backdrop-filter: blur(6px);
+      transition: var(--transition);
+    }
+
+    .back-home-btn:hover {
+      background: #ffffff;
+      color: #0d1f4b;
+    }
+
+    /* 3D Tilt + 3D Flip карточки терминов */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(275px, 1fr));
+      gap: 18px;
+    }
+
+    .flip-card {
+      perspective: 1100px;
+      height: 255px;
+      cursor: pointer;
+    }
+
+    .flip-card-tilt {
+      width: 100%;
+      height: 100%;
+      transition: transform 0.18s ease-out;
+      transform-style: preserve-3d;
+      will-change: transform;
+    }
+
+    .flip-card-inner {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      transition: transform 0.68s cubic-bezier(0.34, 1.56, 0.64, 1);
+      transform-style: preserve-3d;
+    }
+
+    .flip-card.flipped .flip-card-inner {
+      transform: rotateY(180deg);
+    }
+
+    .flip-face {
+      position: absolute;
+      inset: 0;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-top: 4px solid var(--gold);
+      border-radius: 16px;
+      padding: 17px;
+      box-shadow: var(--shadow-card);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      overflow-y: auto;
+    }
+
+    .flip-card:hover .flip-front {
+      border-color: var(--gold);
+      box-shadow: var(--shadow-glow);
+    }
+
+    .flip-back {
+      transform: rotateY(180deg);
+      background: linear-gradient(160deg, var(--bg-surface) 0%, var(--bg-elevated) 100%);
+      border-top-color: var(--accent-blue);
+      justify-content: flex-start;
+      gap: 7px;
+    }
+
+    .card-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 6px;
+      margin-bottom: 8px;
+    }
+
+    .badge {
+      font-size: 0.72rem;
+      background: var(--gold-soft);
+      color: var(--primary);
+      border: 1px solid rgba(212, 175, 55, 0.4);
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-weight: 700;
+    }
+
+    .flip-front h3 {
+      font-size: 1.12rem;
+      margin-bottom: 6px;
+      color: var(--text-main);
+    }
+
+    .flip-front p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+    }
+
+    .flip-hint {
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: var(--primary);
+      padding-top: 8px;
+      border-top: 1px dashed var(--border);
+    }
+
+    .flip-back-title {
+      font-size: 0.98rem;
+      font-weight: 800;
+      color: var(--primary);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .flip-back p {
+      font-size: 0.82rem;
+      color: var(--text-main);
+    }
+
+    .flip-example {
+      background: var(--gold-soft);
+      border-left: 3px solid var(--gold);
+      padding: 7px 10px;
+      border-radius: 6px;
+      font-size: 0.79rem;
+      color: var(--text-main);
+    }
+
+    .flip-law {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: 700;
+      margin-top: auto;
+    }
+
+    /* Улучшенный Тренажер */
+    .quiz-box {
+      background: var(--bg-surface);
+      border: 1px solid var(--gold);
+      border-radius: 18px;
+      padding: 24px 26px;
+      max-width: 820px;
+      margin: 0 auto;
+      box-shadow: var(--shadow-card);
+    }
+
+    .quiz-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--gold);
+    }
+
+    .progress-track {
+      width: 100%;
+      height: 7px;
+      border-radius: 999px;
+      background: var(--bg-elevated);
+      overflow: hidden;
+      margin-bottom: 16px;
+    }
+
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, #1e3a8a, #eab308);
+      transition: width 0.35s ease;
+    }
+
+    .quiz-question {
+      font-size: 1.15rem;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: var(--text-main);
+    }
+
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .quiz-opt {
+      text-align: left;
+      padding: 12px 15px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      background: var(--bg-elevated);
+      color: var(--text-main);
+      font-size: 0.92rem;
+      font-weight: 500;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .quiz-opt:hover:not(:disabled) {
+      border-color: var(--gold);
+      transform: translateX(4px);
+    }
+
+    .quiz-opt.correct {
+      background: rgba(16, 185, 129, 0.2);
+      border-color: #10b981;
+      color: #065f46;
+      font-weight: 700;
+    }
+
+    [data-theme="dark"] .quiz-opt.correct {
+      color: #6ee7b7;
+    }
+
+    .quiz-opt.wrong {
+      background: rgba(239, 68, 68, 0.2);
+      border-color: #ef4444;
+      color: #991b1b;
+    }
+
+    [data-theme="dark"] .quiz-opt.wrong {
+      color: #fca5a5;
+    }
+
+    .quiz-feedback {
+      padding: 12px 14px;
+      border-radius: 10px;
+      background: var(--gold-soft);
+      border-left: 4px solid var(--gold);
+      font-size: 0.88rem;
+      margin-bottom: 14px;
+      display: none;
+    }
+
+    .review-list {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin: 14px 0 18px;
+    }
+
+    .review-item {
+      padding: 12px 14px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
+      background: var(--bg-elevated);
+      font-size: 0.85rem;
+    }
+
+    .review-item.err {
+      border-left: 4px solid #ef4444;
+    }
+
+    .review-item.ok {
+      border-left: 4px solid #10b981;
+    }
+
+    .sources-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 14px;
+      list-style: none;
+    }
+
+    .sources-grid li {
+      background: var(--bg-surface);
+      border: 1px solid var(--border);
+      border-left: 4px solid var(--gold);
+      border-radius: 12px;
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      box-shadow: var(--shadow-card);
+    }
+
+    .sources-grid a {
+      background: var(--gold-soft);
+      color: var(--primary);
+      padding: 6px 12px;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 0.83rem;
+      text-decoration: none;
+      white-space: nowrap;
+    }
+
+    footer {
+      background: var(--bg-footer);
+      color: var(--text-on-dark);
+      border-top: 3px solid var(--gold);
+      padding: 24px 0 18px;
+      font-size: 0.84rem;
+      margin-top: auto;
+    }
+
+    .footer-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .disclaimer {
+      background: rgba(255, 255, 255, 0.05);
+      padding: 12px 15px;
+      border-radius: 10px;
+      margin-bottom: 12px;
+      border-left: 4px solid #eab308;
+      color: #e2e8f0;
+    }
+
+    .footer-bottom {
+      display: flex;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 8px;
+      color: var(--text-on-dark-muted);
+      font-size: 0.8rem;
+      padding-top: 10px;
+      border-top: 1px solid var(--border-dark);
+    }
+
+    .empty-state {
+      text-align: center;
+      padding: 30px;
+      color: var(--text-muted);
+      background: var(--bg-surface);
+      border-radius: 14px;
+      border: 1px dashed var(--border);
+      grid-column: 1 / -1;
+    }
+
+    @media (max-width: 780px) {
+      .hero-grid { grid-template-columns: 1fr; }
+      h1 { font-size: 1.5rem; }
+    }
+
+    @media (max-width: 390px) {
+      .container { padding: 0 12px; }
+      .flip-card { height: 280px; }
+    }
+  </style>
+</head>
+<body>
+
+  <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+    <symbol id="icon-scales" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 3v18"/><path d="M5 7h14"/><path d="m7 7-3 7h6l-3-7Z"/><path d="m17 7-3 7h6l-3-7Z"/><path d="M8 21h8"/>
+    </symbol>
+    <symbol id="icon-scroll" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="8" y1="13" x2="16" y2="13"/><line x1="8" y1="17" x2="13" y2="17"/>
+    </symbol>
+    <symbol id="icon-shield" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+    </symbol>
+    <symbol id="icon-gavel" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <path d="m14.5 12.5-8 8a2.12 2.12 0 0 1-3-3l8-8"/><path d="m16 16 6-6"/><path d="m8 8 6-6"/><path d="m9 7 8 8"/><path d="m21 11-8-8"/>
+    </symbol>
+  </svg>
+
+  <header>
+    <div class="container nav-wrap">
+      <div class="logo" id="logoHome">
+        <span class="logo-icon"><svg width="18" height="18"><use href="#icon-scales"/></svg></span>
+        <span id="brandName">ПравоПростымиСловами</span>
+      </div>
+
+      <div class="header-controls">
+        <div class="page-tabs">
+          <button type="button" class="tab-link active" data-page="home" id="tabHome">Главная</button>
+          <button type="button" class="tab-link" data-page="quiz" id="tabQuiz">Тренажёр</button>
+          <button type="button" class="tab-link" data-page="sources" id="tabSources">Кодексы РК</button>
+        </div>
+
+        <div class="lang-group">
+          <button type="button" class="lang-btn active" data-lang="ru">RU</button>
+          <button type="button" class="lang-btn" data-lang="kz">KZ</button>
+          <button type="button" class="lang-btn" data-lang="en">EN</button>
+        </div>
+
+        <button type="button" class="theme-btn" id="themeToggle">
+          <span id="themeIcon">🌙</span>
+          <span id="themeLabel">Тёмная</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div id="view-home" class="page-view active">
+      <div class="hero-banner">
+        <div class="hero-grid">
+          <div>
+            <div class="hero-badge">
+              <svg width="14" height="14"><use href="#icon-shield"/></svg>
+              <span id="heroBadge">30 терминов • 6 отраслей РК • 3 языка</span>
+            </div>
+            <h1 id="heroTitle">Юридический словарь простыми словами</h1>
+            <p class="hero-sub" id="heroSubtitle">Откройте нужную отрасль права на отдельной странице, найдите термин в поиске или пройдите тренажёр.</p>
+            <div class="search-wrap">
+              <input type="text" id="searchInput" placeholder="Поиск по всем 30 терминам...">
+            </div>
+          </div>
+          <div class="hero-actions">
+            <div style="font-size: 0.86rem; color: #fde68a; font-weight: 700;" id="quizPromoTitle">Тренажёр по законам РК (10 вопросов)</div>
+            <p style="font-size: 0.8rem; color: #dbeafe;" id="quizPromoDesc">Перемешивание вопросов, подсчёт баллов и разбор ошибок.</p>
+            <button type="button" class="quiz-promo-btn" id="openQuizBtn">
+              <svg width="16" height="16"><use href="#icon-gavel"/></svg>
+              <span id="quizPromoBtnText">Запустить тренажёр</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div id="homeSearchResults" style="display: none; margin-bottom: 24px;">
+        <h2 class="section-title" id="searchResultsTitle">Результаты поиска:</h2>
+        <div class="cards-grid" id="homeCardsGrid"></div>
+      </div>
+
+      <h2 class="section-title" id="branchesTitle">
+        <svg width="20" height="20" style="color: var(--gold);"><use href="#icon-scales"/></svg>
+        <span>Отрасли права РК (открыть страницу раздела)</span>
+      </h2>
+      <div class="branch-grid" id="branchGrid"></div>
+    </div>
+
+    <div id="view-category" class="page-view">
+      <div class="cat-page-header" id="catPageBanner">
+        <div>
+          <div class="breadcrumb" id="catBreadcrumb">Главная / Отрасль права</div>
+          <h2 id="catPageTitle" style="color: #ffffff; font-size: 1.5rem; margin-bottom: 4px;"></h2>
+          <p id="catPageDesc" style="color: rgba(255,255,255,0.9); font-size: 0.9rem;"></p>
+        </div>
+        <button type="button" class="back-home-btn" id="backFromCatBtn">← На главную</button>
+      </div>
+      <div class="cards-grid" id="catCardsGrid"></div>
+    </div>
+
+    <div id="view-quiz" class="page-view">
+      <div class="quiz-box">
+        <div class="quiz-meta">
+          <span id="quizProgress">1 / 10</span>
+          <span id="quizLiveScore">Баллы: 0</span>
+        </div>
+        <div class="progress-track">
+          <div class="progress-fill" id="quizProgressBar" style="width: 10%;"></div>
+        </div>
+        <div class="quiz-question" id="quizQuestion"></div>
+        <div class="quiz-options" id="quizOptions"></div>
+        <div class="quiz-feedback" id="quizFeedback"></div>
+        <div id="quizReviewWrap" style="display: none;">
+          <h3 style="font-size: 1rem; color: var(--primary); margin-bottom: 8px;" id="reviewHeading">Разбор ошибок и ответов:</h3>
+          <div class="review-list" id="quizReviewList"></div>
+        </div>
+        <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px;">
+          <button type="button" class="back-home-btn" style="background: var(--gold-soft); color: var(--primary); border-color: var(--gold);" id="quizBackHome">← На главную</button>
+          <button type="button" class="quiz-promo-btn" id="quizNextBtn" style="display: none;">Следующий вопрос →</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="view-sources" class="page-view">
+      <div class="cat-page-header" style="background: linear-gradient(135deg, #0f295c, #1e40af);">
+        <div>
+          <div class="breadcrumb" id="srcBreadcrumb">Главная / Официальные источники</div>
+          <h2 id="srcPageTitle" style="color: #ffffff; font-size: 1.5rem; margin-bottom: 4px;">Нормативные правовые акты РК</h2>
+          <p id="srcPageDesc" style="color: #dbeafe; font-size: 0.9rem;">Все термины сверены с эталонным банком НПА Республики Казахстан (adilet.zan.kz).</p>
+        </div>
+        <button type="button" class="back-home-btn" id="backFromSrcBtn">← На главную</button>
+      </div>
+      <ul class="sources-grid" id="sourcesList"></ul>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-top">
+        <div style="display: flex; align-items: center; gap: 8px; font-weight: 700; font-size: 1rem;">
+          <svg width="18" height="18" style="color: #eab308;"><use href="#icon-scales"/></svg>
+          <span id="footerBrand">ПравоПростымиСловами</span>
+        </div>
+        <span style="color: #fde047; font-size: 0.82rem;">Республика Казахстан • 30 терминов</span>
+      </div>
+
+      <div class="disclaimer" id="footerDisclaimer">
+        Оговорка: Информация на сайте носит исключительно справочный и образовательный характер и не является индивидуальной юридической консультацией.
+      </div>
+
+      <div class="footer-bottom">
+        <span id="footerDate">Дата проверки содержания по официальным источникам (adilet.zan.kz): 15.11.2026 г.</span>
+        <span id="footerNoData">Сбор персональных данных отсутствует</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    const i18n = {
+      ru: {
+        brand: "ПравоПростымиСловами",
+        tabHome: "Главная",
+        tabQuiz: "Тренажёр",
+        tabSources: "Кодексы РК",
+        darkTheme: "Тёмная",
+        lightTheme: "Светлая",
+        heroBadge: "30 терминов • 6 отраслей РК • 3 языка",
+        heroTitle: "Юридический словарь простыми словами",
+        heroSubtitle: "Откройте нужную отрасль права на отдельной странице, найдите термин в поиске или пройдите тренажёр.",
+        searchPlaceholder: "Поиск по всем 30 терминам (например: Сервитут, Медиация, Алименты)...",
+        quizPromoTitle: "Тренажёр по законам РК (10 вопросов)",
+        quizPromoDesc: "Перемешивание вопросов, подсчёт баллов и разбор ошибок.",
+        quizPromoBtn: "Запустить тренажёр",
+        branchesTitle: "Отрасли права РК (открыть страницу раздела)",
+        searchResultsTitle: "Результаты поиска:",
+        backHome: "← На главную",
+        flipToBack: "Перевернуть ↻",
+        flipToFront: "↺ Назад",
+        exampleLabel: "Пример:",
+        emptyText: "По вашему запросу ничего не найдено.",
+        srcPageTitle: "Нормативные правовые акты РК",
+        srcPageDesc: "Все термины сверены с эталонным банком НПА Республики Казахстан (adilet.zan.kz).",
+        disclaimer: "Оговорка: Информация на сайте носит исключительно справочный и образовательный характер и не является индивидуальной юридической консультацией.",
+        dateText: "Дата проверки содержания по официальным источникам (adilet.zan.kz): 15.11.2026 г.",
+        noDataText: "Сбор персональных данных отсутствует",
+        scorePrefix: "Баллы:",
+        quizNext: "Следующий вопрос →",
+        quizFinish: "Показать итог и разбор →",
+        quizRestart: "Пройти новый раунд ↻",
+        quizScoreTitle: "Итог тренажёра:",
+        reviewHeading: "Разбор ответов и подсказки:",
+        yourAns: "Ваш ответ:",
+        rightAns: "Правильный ответ:",
+        categories: {
+          civil: { name: "Гражданское право", desc: "Договоры, неустойка, задаток, сервитут, исковая давность и залог.", gradient: "linear-gradient(135deg, #1e3a8a, #2563eb)", icon: "#icon-scales" },
+          labor: { name: "Трудовое право", desc: "Трудовой договор, испытательный срок, прогул, отпуск и сверхурочные.", gradient: "linear-gradient(135deg, #065f46, #059669)", icon: "#icon-gavel" },
+          family: { name: "Семейное право", desc: "Брачный договор, алименты, совместная собственность и опека.", gradient: "linear-gradient(135deg, #7c2d12, #d97706)", icon: "#icon-shield" },
+          inheritance: { name: "Наследственное право", desc: "Наследство, обязательная доля, завещание и принятие наследства.", gradient: "linear-gradient(135deg, #4c1d95, #7c3aed)", icon: "#icon-scroll" },
+          criminal: { name: "Уголовное право", desc: "Презумпция невиновности, необходимая оборона, соучастие и рецидив.", gradient: "linear-gradient(135deg, #7f1d1d, #dc2626)", icon: "#icon-gavel" },
+          constitutional: { name: "Конституционное право", desc: "Суверенитет, Конституция, гражданство, референдум и права человека.", gradient: "linear-gradient(135deg, #115e59, #0d9488)", icon: "#icon-scales" }
+        },
+        sources: [
+          { title: "Конституция РК от 30 августа 1995 года", url: "https://adilet.zan.kz/rus/docs/K950001000_" },
+          { title: "Гражданский кодекс РК (Общая часть)", url: "https://adilet.zan.kz/rus/docs/K940001000_" },
+          { title: "Гражданский кодекс РК (Особенная часть)", url: "https://adilet.zan.kz/rus/docs/K990000409_" },
+          { title: "Трудовой кодекс РК от 23 ноября 2015 года", url: "https://adilet.zan.kz/rus/docs/K1500000414" },
+          { title: "Кодекс о браке (супружестве) и семье РК", url: "https://adilet.zan.kz/rus/docs/K1100000518" },
+          { title: "Уголовный кодекс РК от 3 июля 2014 года", url: "https://adilet.zan.kz/rus/docs/K1400000226" }
+        ],
+        quiz: [
+          { q: "Сотрудник опоздал на работу на 4 часа подряд без уважительной причины. Как это квалифицирует ТК РК?", opts: ["Обычное опоздание", "Прогул (более 3 часов подряд)", "Административный арест"], ans: 1, exp: "По ст. 52 ТК РК отсутствие на работе без уважительной причины более 3 часов подряд — прогул." },
+          { q: "Продавец взял задаток за квартиру, но сам передумал её продавать. Сколько он обязан вернуть?", opts: ["Только сумму задатка", "Ничего не возвращает", "Двойную сумму задатка"], ans: 2, exp: "По ст. 337 ГК РК сторона, получившая задаток и сорвавшая сделку, возвращает двойную сумму." },
+          { q: "Какой максимальный испытательный срок по общему правилу устанавливается для обычного сотрудника в РК?", opts: ["До 3 месяцев", "До 1 года", "14 календарных дней"], ans: 0, exp: "По ст. 36 ТК РК общий испытательный срок составляет до 3 месяцев." },
+          { q: "Какую долю заработка составляют алименты на одного несовершеннолетнего ребёнка по КоБС РК?", opts: ["1/2 заработка", "1/4 (25%) заработка", "1/10 заработка"], ans: 1, exp: "По ст. 138 КоБС РК на одного ребёнка взыскивается 1/4 заработка или иного дохода." },
+          { q: "Обязан ли подозреваемый сам доказывать свою невиновность в суде?", opts: ["Да, обязан", "Нет, действует презумпция невиновности", "Только по гражданским делам"], ans: 1, exp: "Ст. 77 Конституции РК закрепляет презумпцию невиновности." },
+          { q: "Сколько месяцев обычно составляет срок принятия наследства по ГК РК?", opts: ["6 месяцев", "1 месяц", "3 года"], ans: 0, exp: "По ст. 1072-1 ГК РК наследство принимается в течение 6 месяцев со дня открытия." },
+          { q: "Какой общий срок исковой давности установлен Гражданским кодексом РК?", opts: ["3 года", "1 год", "10 лет"], ans: 0, exp: "По ст. 178 ГК РК общий срок исковой давности составляет три года." },
+          { q: "Какой минимальный оплачиваемый ежегодный трудовой отпуск предусмотрен ТК РК?", opts: ["Не менее 24 календарных дней", "10 календарных дней", "14 рабочих дней"], ans: 0, exp: "По ст. 88 ТК РК основной оплачиваемый отпуск составляет не менее 24 календарных дней." },
+          { q: "В какой форме должен заключаться брачный договор по КоБС РК?", opts: ["Устной", "Письменной и нотариально удостоверенной", "Только в свободной форме без нотариуса"], ans: 1, exp: "По ст. 40 КоБС РК брачный договор заключается в письменной форме и подлежит нотариальному удостоверению." },
+          { q: "Что означает право ограниченного пользования чужим земельным участком (например, для прохода)?", opts: ["Сервитут", "Алименты", "Амнистия"], ans: 0, exp: "Сервитут (ст. 67 ЗК РК / нормы о вещных правах) — право ограниченного пользования чужим участком." }
+        ]
+      },
+      kz: {
+        brand: "ҚұқықҚарапайымТілде",
+        tabHome: "Басты бет",
+        tabQuiz: "Тренажер",
+        tabSources: "ҚР Кодекстері",
+        darkTheme: "Қараңғы",
+        lightTheme: "Жарық",
+        heroBadge: "30 термин • 6 құқық саласы • 3 тіл",
+        heroTitle: "Заң сөздігі қарапайым тілде",
+        heroSubtitle: "Құқық саласын жеке бетте ашыңыз, іздеуден табыңыз немесе тренажерден өтіңіз.",
+        searchPlaceholder: "30 термин бойынша іздеу (мысалы: Сервитут, Алимент)...",
+        quizPromoTitle: "ҚР заңдары бойынша тренажер (10 сұрақ)",
+        quizPromoDesc: "Сұрақтарды араластыру, ұпай есептеу және қателерді талдау.",
+        quizPromoBtn: "Тренажерді ашу",
+        branchesTitle: "ҚР құқық салалары (бөлім бетін ашу)",
+        searchResultsTitle: "Іздеу нәтижелері:",
+        backHome: "← Басты бетке",
+        flipToBack: "Айналдыру ↻",
+        flipToFront: "↺ Артқа",
+        exampleLabel: "Мысал:",
+        emptyText: "Сұрауыңыз бойынша ештеңе табылмады.",
+        srcPageTitle: "ҚР нормативтік құқықтық актілері",
+        srcPageDesc: "Барлық терминдер ҚР НҚА эталондық банкімен (adilet.zan.kz) тексерілген.",
+        disclaimer: "Ескерту: Сайттағы ақпарат тек анықтамалық және білім беру сипатына ие және жеке заңгерлік кеңес болып табылмайды.",
+        dateText: "Ресми дереккөздер (adilet.zan.kz) бойынша тексеру күні: 15.11.2026 ж.",
+        noDataText: "Дербес деректер жиналмайды",
+        scorePrefix: "Ұпай:",
+        quizNext: "Келесі сұрақ →",
+        quizFinish: "Қорытынды және талдау →",
+        quizRestart: "Жаңа раунд бастау ↻",
+        quizScoreTitle: "Тренажер қорытындысы:",
+        reviewHeading: "Жауаптарды талдау және кеңестер:",
+        yourAns: "Сіздің жауабыңыз:",
+        rightAns: "Дұрыс жауап:",
+        categories: {
+          civil: { name: "Азаматтық құқық", desc: "Шарттар, тұрақсыздық айыбы, кепілпұл, сервитут және талап мерзімі.", gradient: "linear-gradient(135deg, #1e3a8a, #2563eb)", icon: "#icon-scales" },
+          labor: { name: "Еңбек құқығы", desc: "Еңбек шарты, сынақ мерзімі, прогул, демалыс және үстеме жұмыс.", gradient: "linear-gradient(135deg, #065f46, #059669)", icon: "#icon-gavel" },
+          family: { name: "Неке және отбасы құқығы", desc: "Неке шарты, алимент, ортақ меншік және қамқорлық.", gradient: "linear-gradient(135deg, #7c2d12, #d97706)", icon: "#icon-shield" },
+          inheritance: { name: "Мұрагерлік құқық", desc: "Мұра, міндетті үлес, өсиет және мұраны қабылдау.", gradient: "linear-gradient(135deg, #4c1d95, #7c3aed)", icon: "#icon-scroll" },
+          criminal: { name: "Қылмыстық құқық", desc: "Кінәсіздік презумпциясы, қажетті қорғаныс, сыбайластық және қайталау.", gradient: "linear-gradient(135deg, #7f1d1d, #dc2626)", icon: "#icon-gavel" },
+          constitutional: { name: "Конституциялық құқық", desc: "Егемендік, Конституция, азаматтық, референдум және құқықтар.", gradient: "linear-gradient(135deg, #115e59, #0d9488)", icon: "#icon-scales" }
+        },
+        sources: [
+          { title: "ҚР Конституциясы (30.08.1995)", url: "https://adilet.zan.kz/kaz/docs/K950001000_" },
+          { title: "ҚР Азаматтық кодексі (Жалпы бөлім)", url: "https://adilet.zan.kz/kaz/docs/K940001000_" },
+          { title: "ҚР Азаматтық кодексі (Ерекше бөлім)", url: "https://adilet.zan.kz/kaz/docs/K990000409_" },
+          { title: "ҚР Еңбек кодексі (23.11.2015)", url: "https://adilet.zan.kz/kaz/docs/K1500000414" },
+          { title: "ҚР Неке (ерлі-зайыптылық) және отбасы кодексі", url: "https://adilet.zan.kz/kaz/docs/K1100000518" },
+          { title: "ҚР Қылмыстық кодексі (03.07.2014)", url: "https://adilet.zan.kz/kaz/docs/K1400000226" }
+        ],
+        quiz: [
+          { q: "Қызметкер дәлелді себепсіз қатарынан 4 сағат жұмыста болмады. ҚР ЕК бойынша бұл не?", opts: ["Қарапайым кешігу", "Жұмыста болмау / прогул (3 сағаттан астам)", "Әкімшілік қамау"], ans: 1, exp: "ҚР ЕК 52-бабы бойынша себепсіз қатарынан 3 сағаттан астам болмау — прогул." },
+          { q: "Сатушы пәтерге кепілпұл алып, өзі сатудан бас тартты. Ол қанша қайтаруы тиіс?", opts: ["Тек кепілпұл сомасын", "Ештеңе қайтармайды", "Кепілпұлдың екі есе мөлшерін"], ans: 2, exp: "ҚР АК 337-бабы бойынша кепілпұл алған тарап екі есе қайтарады." },
+          { q: "ҚР-да қарапайым қызметкер үшін ең ұзақ сынақ мерзімі қандай?", opts: ["3 айға дейін", "1 жылға дейін", "14 күнтізбелік күн"], ans: 0, exp: "ҚР ЕК 36-бабы бойынша сынақ мерзімі 3 айға дейін." },
+          { q: "ҚР НК бойынша бір балаға алимент табыстың қандай бөлігін құрайды?", opts: ["1/2 бөлігі", "1/4 (25%) бөлігі", "1/10 бөлігі"], ans: 1, exp: "ҚР НК 138-бабы бойынша бір балаға табыстың 1/4 бөлігі." },
+          { q: "Күдікті сотта өз кінәсіздігін өзі дәлелдеуге міндетті ме?", opts: ["Иә, міндетті", "Жоқ, кінәсіздік презумпциясы әрекет етеді", "Тек азаматтық істерде"], ans: 1, exp: "ҚР Конституциясының 77-бабы кінәсіздік презумпциясын бекітеді." },
+          { q: "ҚР АК бойынша мұраны қабылдау мерзімі әдетте қанша ай?", opts: ["6 ай", "1 ай", "3 жыл"], ans: 0, exp: "ҚР АК 1072-1-бабы бойынша мұраны қабылдау мерзімі — 6 ай." },
+          { q: "ҚР АК бойынша жалпы талап қою мерзімі қанша?", opts: ["3 жыл", "1 жыл", "10 жыл"], ans: 0, exp: "ҚР АК 178-бабы бойынша жалпы талап қою мерзімі — 3 жыл." },
+          { q: "ҚР ЕК бойынша ең аз жылдық ақылы еңбек демалысы қанша?", opts: ["Кемінде 24 күнтізбелік күн", "10 күнтізбелік күн", "14 жұмыс күні"], ans: 0, exp: "ҚР ЕК 88-бабы бойынша кемінде 24 күнтізбелік күн." },
+          { q: "ҚР НК бойынша неке шарты қандай нысанда жасалады?", opts: ["Ауызша", "Жазбаша және нотариалды куәландырылған", "Нотариуссыз еркін нысанда"], ans: 1, exp: "ҚР НК 40-бабы бойынша жазбаша және нотариалды куәландырылады." },
+          { q: "Бөтен жер учаскесін шектеулі пайдалану құқығы (мысалы, өту үшін) қалай аталады?", opts: ["Сервитут", "Алимент", "Рақымшылық"], ans: 0, exp: "Сервитут — бөтен учаскені шектеулі пайдалану құқығы." }
+        ]
+      },
+      en: {
+        brand: "LawInPlainWords",
+        tabHome: "Home",
+        tabQuiz: "Quiz",
+        tabSources: "RK Codes",
+        darkTheme: "Dark",
+        lightTheme: "Light",
+        heroBadge: "30 Terms • 6 Branches of RK • 3 Languages",
+        heroTitle: "Legal Dictionary in Plain Words",
+        heroSubtitle: "Open a branch on its own page, search across 30 terms, or practice with the quiz.",
+        searchPlaceholder: "Search across all 30 terms (e.g. Easement, Alimony)...",
+        quizPromoTitle: "RK Law Quiz (10 Questions)",
+        quizPromoDesc: "Shuffled questions, live score, and error review.",
+        quizPromoBtn: "Launch Quiz",
+        branchesTitle: "Branches of Law of RK (Open Dedicated Page)",
+        searchResultsTitle: "Search Results:",
+        backHome: "← Back to Home",
+        flipToBack: "Flip ↻",
+        flipToFront: "↺ Back",
+        exampleLabel: "Example:",
+        emptyText: "No terms matched your query.",
+        srcPageTitle: "Normative Legal Acts of RK",
+        srcPageDesc: "All terms are checked against the official legal database of Kazakhstan (adilet.zan.kz).",
+        disclaimer: "Disclaimer: Information on this site is strictly for reference and educational purposes and does not constitute individual legal advice.",
+        dateText: "Content verification date via official sources (adilet.zan.kz): 15.11.2026.",
+        noDataText: "No personal data collected",
+        scorePrefix: "Score:",
+        quizNext: "Next Question →",
+        quizFinish: "See Summary & Review →",
+        quizRestart: "Start New Round ↻",
+        quizScoreTitle: "Quiz Summary:",
+        reviewHeading: "Answer Breakdown & Notes:",
+        yourAns: "Your answer:",
+        rightAns: "Correct answer:",
+        categories: {
+          civil: { name: "Civil Law", desc: "Contracts, penalty, deposit, easement, limitation period, and pledge.", gradient: "linear-gradient(135deg, #1e3a8a, #2563eb)", icon: "#icon-scales" },
+          labor: { name: "Labor Law", desc: "Employment contract, probation, absence, leave, and overtime.", gradient: "linear-gradient(135deg, #065f46, #059669)", icon: "#icon-gavel" },
+          family: { name: "Family Law", desc: "Marital agreement, child support, joint property, and guardianship.", gradient: "linear-gradient(135deg, #7c2d12, #d97706)", icon: "#icon-shield" },
+          inheritance: { name: "Inheritance Law", desc: "Estate succession, compulsory share, will, and acceptance.", gradient: "linear-gradient(135deg, #4c1d95, #7c3aed)", icon: "#icon-scroll" },
+          criminal: { name: "Criminal Law", desc: "Presumption of innocence, necessary defense, complicity, and recidivism.", gradient: "linear-gradient(135deg, #7f1d1d, #dc2626)", icon: "#icon-gavel" },
+          constitutional: { name: "Constitutional Law", desc: "Sovereignty, Constitution, citizenship, referendum, and rights.", gradient: "linear-gradient(135deg, #115e59, #0d9488)", icon: "#icon-scales" }
+        },
+        sources: [
+          { title: "Constitution of RK (August 30, 1995)", url: "https://adilet.zan.kz/rus/docs/K950001000_" },
+          { title: "Civil Code of RK (General Part)", url: "https://adilet.zan.kz/rus/docs/K940001000_" },
+          { title: "Civil Code of RK (Special Part)", url: "https://adilet.zan.kz/rus/docs/K990000409_" },
+          { title: "Labor Code of RK (November 23, 2015)", url: "https://adilet.zan.kz/rus/docs/K1500000414" },
+          { title: "Marriage & Family Code of RK", url: "https://adilet.zan.kz/rus/docs/K1100000518" },
+          { title: "Criminal Code of RK (July 3, 2014)", url: "https://adilet.zan.kz/rus/docs/K1400000226" }
+        ],
+        quiz: [
+          { q: "An employee is absent for 4 straight hours without a valid excuse. How does RK Labor Code classify it?", opts: ["Minor tardiness", "Unexcused absence / truancy (over 3 hours)", "Administrative arrest"], ans: 1, exp: "Art. 52 of RK Labor Code defines absence over 3 consecutive hours without valid reason as truancy." },
+          { q: "A seller takes a deposit for a flat and backs out. How much must they return?", opts: ["Only the deposit", "Nothing", "Double the deposit"], ans: 2, exp: "Art. 337 of RK Civil Code requires returning double the deposit when the recipient defaults." },
+          { q: "What is the general maximum probation period for a standard employee in RK?", opts: ["Up to 3 months", "Up to 1 year", "14 calendar days"], ans: 0, exp: "Art. 36 of RK Labor Code sets general probation up to 3 months." },
+          { q: "What share of income is child support for one minor child under RK family law?", opts: ["1/2 of income", "1/4 (25%) of income", "1/10 of income"], ans: 1, exp: "Art. 138 of RK Marriage & Family Code sets 1/4 of income for one child." },
+          { q: "Must a suspect prove their own innocence in court?", opts: ["Yes", "No, presumption of innocence applies", "Only in civil cases"], ans: 1, exp: "Art. 77 of RK Constitution guarantees presumption of innocence." },
+          { q: "What is the standard period to accept an inheritance under RK Civil Code?", opts: ["6 months", "1 month", "3 years"], ans: 0, exp: "Art. 1072-1 of RK Civil Code sets a 6-month period." },
+          { q: "What is the general statute of limitations under RK Civil Code?", opts: ["3 years", "1 year", "10 years"], ans: 0, exp: "Art. 178 of RK Civil Code sets a general 3-year limitation period." },
+          { q: "What is the minimum annual paid leave under RK Labor Code?", opts: ["At least 24 calendar days", "10 calendar days", "14 working days"], ans: 0, exp: "Art. 88 of RK Labor Code sets at least 24 calendar days." },
+          { q: "What form is required for a marital agreement under RK family law?", opts: ["Oral", "Written and notarized", "Informal without notary"], ans: 1, exp: "Art. 40 of RK Marriage & Family Code requires written and notarized form." },
+          { q: "What is the limited right to use someone else's land plot (e.g., for passage)?", opts: ["Easement (Servitude)", "Alimony", "Amnesty"], ans: 0, exp: "An easement grants limited use of another's land plot." }
+        ]
+      }
+    };
+
+    // 30 терминов (5 на каждую из 6 отраслей права РК)
+    const termsData = [
+      { category: "civil", icon: "#icon-scales",
+        ru: { title: "Неустойка", short: "Денежный штраф или пеня за нарушение договора.", simple: "Сумма за просрочку или неисполнение обязательств.", example: "Задержку доставки товара компенсировали неустойкой по договору.", law: "Ст. 293 ГК РК" },
+        kz: { title: "Тұрақсыздық айыбы", short: "Шартты бұзғаны үшін ақшалай айыппұл.", simple: "Міндеттемені кешіктіргені үшін төленетін сома.", example: "Тауарды кешіктіргені үшін шартқа сай тұрақсыздық айыбы есептелді.", law: "ҚР АК 293-бабы" },
+        en: { title: "Penalty", short: "Monetary sum for contract breach or delay.", simple: "Compensation for delayed or unfulfilled contract duties.", example: "Late delivery triggered a contract penalty.", law: "Art. 293 Civil Code of RK" } },
+      { category: "civil", icon: "#icon-scroll",
+        ru: { title: "Доверенность", short: "Письменное разрешение действовать от чужого имени.", simple: "Позволяет представителю совершать указанные действия.", example: "Представитель по доверенности оформил документы.", law: "Ст. 167 ГК РК" },
+        kz: { title: "Сенімхат", short: "Өзге адамның атынан әрекет етуге рұқсат.", simple: "Өкілге нақты әрекеттер жасауға құқық береді.", example: "Өкіл сенімхат бойынша құжаттарды рәсімдеді.", law: "ҚР АК 167-бабы" },
+        en: { title: "Power of Attorney", short: "Written authority to act for another person.", simple: "Lets a representative perform specified acts.", example: "An agent filed documents under a power of attorney.", law: "Art. 167 Civil Code of RK" } },
+      { category: "civil", icon: "#icon-scales",
+        ru: { title: "Задаток", short: "Деньги в счёт оплаты, подтверждающие намерение.", simple: "При срыве сделки по вине продавца возвращается в двойном размере.", example: "Задаток за жильё возвращается вдвойне при отказе продавца.", law: "Ст. 337 ГК РК" },
+        kz: { title: "Кепілпұл", short: "Ниетті растайтын төлем есебіндегі ақша.", simple: "Сатушы кінәлі болса, екі есе қайтарылады.", example: "Сатушы бас тартса, кепілпұл екі есе қайтарылады.", law: "ҚР АК 337-бабы" },
+        en: { title: "Deposit", short: "Advance payment confirming contract intent.", simple: "Returned double if the seller defaults on the deal.", example: "A seller who backs out owes double the deposit.", law: "Art. 337 Civil Code of RK" } },
+      { category: "civil", icon: "#icon-shield",
+        ru: { title: "Ипотека", short: "Залог недвижимости под возврат кредита.", simple: "Жильё остаётся в залоге до полного погашения займа.", example: "Квартира в ипотеке находится в залоге банка до выплаты долга.", law: "Закон РК об ипотеке" },
+        kz: { title: "Ипотека", short: "Қарыз бойынша жылжымайтын мүлікті кепілге қою.", simple: "Қарыз өтелгенше мүлік кепілде тұрады.", example: "Ипотекалық пәтер қарыз жабылғанша банк кепілінде.", law: "ҚР Ипотека заңы" },
+        en: { title: "Mortgage", short: "Real estate pledge securing a loan.", simple: "Property stays pledged until the loan is repaid.", example: "A mortgaged flat remains pledged until payoff.", law: "RK Mortgage Law" } },
+      { category: "civil", icon: "#icon-scroll",
+        ru: { title: "Сервитут", short: "Ограниченное право пользования чужим участком.", simple: "Например, право прохода или проезда через чужой участок.", example: "Соседу предоставлен проход через участок по сервитуту.", law: "Ст. 67 ЗК РК" },
+        kz: { title: "Сервитут", short: "Өзге учаскені шектеулі пайдалану құқығы.", simple: "Мысалы, өзге учаске арқылы өту құқығы.", example: "Сервитут негізінде көршіге өту құқығы берілді.", law: "ҚР Жер кодексі 67-бабы" },
+        en: { title: "Easement", short: "Limited right to use another's land plot.", simple: "For example, a right of way across neighboring land.", example: "Access across a plot was granted via easement.", law: "Art. 67 Land Code of RK" } },
+
+      { category: "labor", icon: "#icon-gavel",
+        ru: { title: "Прогул", short: "Отсутствие без уважительной причины свыше 3 часов подряд.", simple: "Неявка или уход более чем на 3 часа подряд без уважительной причины.", example: "Работник отсутствовал 4 часа подряд без уважительной причины.", law: "Ст. 52 ТК РК" },
+        kz: { title: "Прогул", short: "Себепсіз қатарынан 3 сағаттан астам жұмыста болмау.", simple: "Дәлелді себепсіз қатарынан 3 сағаттан артық болмау.", example: "Қызметкер себепсіз қатарынан 4 сағат жұмыста болмады.", law: "ҚР ЕК 52-бабы" },
+        en: { title: "Truancy", short: "Absence over 3 hours in a row without valid excuse.", simple: "Being away from work over 3 straight hours without reason.", example: "A worker was absent 4 straight hours without excuse.", law: "Art. 52 Labor Code of RK" } },
+      { category: "labor", icon: "#icon-scroll",
+        ru: { title: "Испытательный срок", short: "Проверка квалификации работника (обычно до 3 мес.).", simple: "Период оценки соответствия сотрудника поручаемой работе.", example: "Новый сотрудник прошёл испытательный срок 2 месяца.", law: "Ст. 36 ТК РК" },
+        kz: { title: "Сынақ мерзімі", short: "Біліктілікті тексеру кезеңі (әдетте 3 айға дейін).", simple: "Қызметкердің жұмысқа сәйкестігін тексеру уақыты.", example: "Жаңа маманға 2 айлық сынақ мерзімі қойылды.", law: "ҚР ЕК 36-бабы" },
+        en: { title: "Probation", short: "Trial period to verify skills (usually up to 3 months).", simple: "Initial period to test suitability for the job.", example: "A new hire completed a 2-month probation period.", law: "Art. 36 Labor Code of RK" } },
+      { category: "labor", icon: "#icon-shield",
+        ru: { title: "Трудовой договор", short: "Соглашение между работником и работодателем.", simple: "Закрепляет должность, оплату, режим труда и гарантии.", example: "Стороны подписали трудовой договор в двух экземплярах.", law: "Ст. 21 ТК РК" },
+        kz: { title: "Еңбек шарты", short: "Қызметкер мен жұмыс беруші арасындағы келісім.", simple: "Лауазымды, жалақыны және жұмыс тәртібін бекітеді.", example: "Тараптар еңбек шартын екі данада жасасты.", law: "ҚР ЕК 21-бабы" },
+        en: { title: "Employment Contract", short: "Agreement between employee and employer.", simple: "Sets role, pay, working hours, and statutory guarantees.", example: "Both parties signed a written employment contract.", law: "Art. 21 Labor Code of RK" } },
+      { category: "labor", icon: "#icon-scroll",
+        ru: { title: "Ежегодный отпуск", short: "Оплачиваемый отдых (основной — не менее 24 дней).", simple: "Сохраняется место работы и средняя заработная плата.", example: "Работник взял 24 календарных дня оплачиваемого отпуска.", law: "Ст. 88 ТК РК" },
+        kz: { title: "Жылдық демалыс", short: "Ақылы демалыс (негізгісі — кемінде 24 күн).", simple: "Жұмыс орны мен орташа жалақы сақталады.", example: "Қызметкер 24 күнтізбелік күн еңбек демалысын алды.", law: "ҚР ЕК 88-бабы" },
+        en: { title: "Annual Leave", short: "Paid rest (basic minimum 24 calendar days).", simple: "Job position and average pay are preserved during leave.", example: "The employee took 24 calendar days of paid leave.", law: "Art. 88 Labor Code of RK" } },
+      { category: "labor", icon: "#icon-gavel",
+        ru: { title: "Сверхурочная работа", short: "Работа сверх установленной продолжительности рабочего дня.", simple: "Оплачивается в повышенном размере по нормам ТК РК.", example: "Переработка за пределами смены оплачена с повышающим коэффициентом.", law: "Ст. 77 ТК РК" },
+        kz: { title: "Үстеме жұмыс", short: "Белгіленген жұмыс уақытынан тыс атқарылған жұмыс.", simple: "ҚР ЕК нормаларына сай жоғары мөлшерде төленеді.", example: "Ауысымнан тыс жұмысқа қосымша ақы есептелді.", law: "ҚР ЕК 77-бабы" },
+        en: { title: "Overtime Work", short: "Work beyond standard daily working hours.", simple: "Compensated at higher rates under RK Labor Code.", example: "Extra hours past shift end were paid at an overtime rate.", law: "Art. 77 Labor Code of RK" } },
+
+      { category: "family", icon: "#icon-scales",
+        ru: { title: "Алименты", short: "Выплаты на содержание ребёнка или членов семьи.", simple: "На одного ребёнка взыскивается 1/4 заработка/дохода.", example: "Ежемесячно удерживается 1/4 дохода на содержание ребёнка.", law: "Ст. 138 КоБС РК" },
+        kz: { title: "Алимент", short: "Баланы немесе отбасы мүшесін асырау төлемі.", simple: "Бір балаға табыстың 1/4 бөлігі өндіріледі.", example: "Баланы асырауға ай сайын табыстың 1/4 бөлігі төленеді.", law: "ҚР НК 138-бабы" },
+        en: { title: "Child Support", short: "Payments for supporting a child or family member.", simple: "1/4 of income applies to one child under RK family law.", example: "Monthly support of 1/4 income is paid for one child.", law: "Art. 138 Marriage & Family Code" } },
+      { category: "family", icon: "#icon-scroll",
+        ru: { title: "Брачный договор", short: "Соглашение супругов об имуществе.", simple: "Удостоверяется нотариально, определяет имущественные права.", example: "Супруги определили режим имущества в брачном договоре.", law: "Ст. 40 КоБС РК" },
+        kz: { title: "Неке шарты", short: "Жұбайлардың мүлік туралы келісімі.", simple: "Нотариалды куәландырылады, мүліктік құқықты айқындайды.", example: "Жұбайлар мүлік тәртібін неке шартымен бекітті.", law: "ҚР НК 40-бабы" },
+        en: { title: "Marital Agreement", short: "Spousal agreement on property rights.", simple: "Notarized contract defining property ownership rules.", example: "Spouses set property terms in a marital agreement.", law: "Art. 40 Marriage & Family Code" } },
+      { category: "family", icon: "#icon-shield",
+        ru: { title: "Совместная собственность", short: "Имущество, нажитое супругами в период брака.", simple: "По общему правилу принадлежит обоим супругам на равных началах.", example: "Имущество, приобретённое в браке, является общим.", law: "Ст. 33 КоБС РК" },
+        kz: { title: "Ортақ меншік", short: "Неке кезеңінде жұбайлар тапқан мүлік.", simple: "Жалпы тәртіп бойынша екі жұбайға ортақ тиесілі.", example: "Некеде сатып алынған мүлік ортақ меншік саналады.", law: "ҚР НК 33-бабы" },
+        en: { title: "Joint Property", short: "Assets acquired by spouses during marriage.", simple: "Generally owned jointly by both spouses.", example: "Assets bought during marriage form joint property.", law: "Art. 33 Marriage & Family Code" } },
+      { category: "family", icon: "#icon-shield",
+        ru: { title: "Опека над ребёнком", short: "Форма защиты прав детей до 14 лет без попечения.", simple: "Опекун воспитывает ребёнка и защищает его интересы.", example: "Опекун назначен для защиты прав малолетнего ребёнка.", law: "Ст. 121 КоБС РК" },
+        kz: { title: "Қорғаншылық", short: "14 жасқа дейінгі бала құқығын қорғау нысаны.", simple: "Қорғаншы баланы тәрбиелеп, мүддесін қорғайды.", example: "Кішкентай баланың құқығын қорғауға қорғаншы тағайындалды.", law: "ҚР НК 121-бабы" },
+        en: { title: "Guardianship", short: "Protection of children under 14 without parental care.", simple: "A guardian cares for the child and safeguards interests.", example: "A guardian was appointed to protect a minor child.", law: "Art. 121 Marriage & Family Code" } },
+      { category: "family", icon: "#icon-scroll",
+        ru: { title: "Расторжение брака", short: "Прекращение брака на будущее время.", simple: "Оформляется через ЗАГС (при согласии без детей) или суд.", example: "Брак расторгнут в установленном законом порядке.", law: "Ст. 16 КоБС РК" },
+        kz: { title: "Некені бұзу", short: "Некені болашақ уақытқа тоқтату.", simple: "АХАЖ арқылы немесе сот тәртібімен рәсімделеді.", example: "Неке заңда белгіленген тәртіппен бұзылды.", law: "ҚР НК 16-бабы" },
+        en: { title: "Divorce", short: "Termination of a marriage for the future.", simple: "Handled via civil registry or court depending on conditions.", example: "The marriage was dissolved under statutory procedure.", law: "Art. 16 Marriage & Family Code" } },
+
+      { category: "inheritance", icon: "#icon-scroll",
+        ru: { title: "Наследство", short: "Переход имущества умершего к наследникам.", simple: "Осуществляется по завещанию или по закону.", example: "Наследники оформили наследство у нотариуса.", law: "Ст. 1038 ГК РК" },
+        kz: { title: "Мұра", short: "Қайтыс болған адамның мүлкінің өтуі.", simple: "Өсиет немесе заң бойынша жүзеге асады.", example: "Мұрагерлер мұраны нотариуста рәсімдеді.", law: "ҚР АК 1038-бабы" },
+        en: { title: "Inheritance", short: "Transfer of a deceased person's estate to heirs.", simple: "Occurs by will or statutory inheritance rules.", example: "Heirs registered the estate through a notary.", law: "Art. 1038 Civil Code of RK" } },
+      { category: "inheritance", icon: "#icon-shield",
+        ru: { title: "Обязательная доля", short: "Гарантированная доля защищённых наследников.", simple: "Положена несовершеннолетним и нетрудоспособным близким.", example: "Ребёнок получил обязательную долю в наследстве.", law: "Ст. 1069 ГК РК" },
+        kz: { title: "Міндетті үлес", short: "Қорғалатын мұрагерлердің кепілді үлесі.", simple: "Кәмелетке толмаған және еңбекке қабілетсіз жақындарға тиесілі.", example: "Бала мұрадан міндетті үлесін алды.", law: "ҚР АК 1069-бабы" },
+        en: { title: "Compulsory Share", short: "Protected estate share for eligible relatives.", simple: "Applies to minor and dependent heirs despite a will.", example: "A minor heir received a compulsory share.", law: "Art. 1069 Civil Code of RK" } },
+      { category: "inheritance", icon: "#icon-scroll",
+        ru: { title: "Завещание", short: "Распоряжение имуществом на случай смерти.", simple: "Совершается дееспособным гражданином в письменной форме.", example: "Гражданин составил завещание и удостоверил у нотариуса.", law: "Ст. 1046 ГК РК" },
+        kz: { title: "Өсиет", short: "Қайтыс болған жағдайда мүлікке билік ету.", simple: "Әрекетке қабілетті азамат жазбаша түрде жасайды.", example: "Азамат өсиетті нотариуста куәландырды.", law: "ҚР АК 1046-бабы" },
+        en: { title: "Will (Testament)", short: "Disposition of property effective upon death.", simple: "Written instruction made by a legally capable person.", example: "A person executed a notarized will.", law: "Art. 1046 Civil Code of RK" } },
+      { category: "inheritance", icon: "#icon-scales",
+        ru: { title: "Принятие наследства", short: "Действия наследника по вступлению в наследство.", simple: "Обычно совершается в течение 6 месяцев.", example: "Наследник подал заявление нотариусу в 6-месячный срок.", law: "Ст. 1072-1 ГК РК" },
+        kz: { title: "Мұраны қабылдау", short: "Мұрагердің мұраға кіру әрекеттері.", simple: "Әдетте 6 ай ішінде жүзеге асырылады.", example: "Мұрагер 6 ай ішінде нотариусқа өтініш берді.", law: "ҚР АК 1072-1-бабы" },
+        en: { title: "Estate Acceptance", short: "Heir's act of accepting an inheritance.", simple: "Generally completed within 6 months.", example: "The heir filed with a notary within 6 months.", law: "Art. 1072-1 Civil Code of RK" } },
+      { category: "inheritance", icon: "#icon-gavel",
+        ru: { title: "Отказ от наследства", short: "Право наследника отказаться от причитающейся доли.", simple: "Оформляется подачей заявления нотариусу.", example: "Наследник оформил отказ от наследства у нотариуса.", law: "Ст. 1074 ГК РК" },
+        kz: { title: "Мұрадан бас тарту", short: "Мұрагердің өз үлесінен бас тарту құқығы.", simple: "Нотариусқа өтініш беру арқылы рәсімделеді.", example: "Мұрагер мұрадан бас тартуды нотариуста рәсімдеді.", law: "ҚР АК 1074-бабы" },
+        en: { title: "Disclaimer of Inheritance", short: "Heir's right to renounce an inheritance share.", simple: "Done by submitting a statement to a notary.", example: "An heir formally renounced their share.", law: "Art. 1074 Civil Code of RK" } },
+
+      { category: "criminal", icon: "#icon-gavel",
+        ru: { title: "Презумпция невиновности", short: "Невиновность лица до вступления приговора в силу.", simple: "Сомнения толкуются в пользу подозреваемого/обвиняемого.", example: "До приговора суда лицо считается невиновным.", law: "Ст. 77 Конституции РК" },
+        kz: { title: "Кінәсіздік презумпциясы", short: "Үкім күшіне енгенше кінәсіз саналу.", simple: "Күмән күдікті/айыпталушы пайдасына шешіледі.", example: "Сот үкімі күшіне енгенше адам кінәсіз.", law: "ҚР Конституциясы 77-бабы" },
+        en: { title: "Presumption of Innocence", short: "Innocent until proven guilty by final verdict.", simple: "Doubts are resolved in favor of the accused.", example: "A person is presumed innocent until final judgment.", law: "Art. 77 Constitution of RK" } },
+      { category: "criminal", icon: "#icon-shield",
+        ru: { title: "Необходимая оборона", short: "Законная защита от опасного посягательства.", simple: "Применяется при реальной угрозе без превышения пределов.", example: "Защита от нападения в пределах необходимой обороны.", law: "Ст. 32 УК РК" },
+        kz: { title: "Қажетті қорғаныс", short: "Қауіпті қол сұғушылықтан заңды қорғану.", simple: "Нақты қауіп кезінде шектен аспай қолданылады.", example: "Шабуылдан қажетті қорғаныс шегінде қорғану.", law: "ҚР ҚК 32-бабы" },
+        en: { title: "Necessary Defense", short: "Lawful protection against a dangerous attack.", simple: "Applies to a real threat within defense limits.", example: "Repelling an attack within necessary defense limits.", law: "Art. 32 Criminal Code of RK" } },
+      { category: "criminal", icon: "#icon-scroll",
+        ru: { title: "Соучастие в преступлении", short: "Умышленное совместное участие двух и более лиц.", simple: "Включает исполнителя, организатора, подстрекателя и пособника.", example: "Действия соучастников оцениваются с учётом роли каждого.", law: "Ст. 27 УК РК" },
+        kz: { title: "Қылмысқа қатысу", short: "Екі немесе одан көп адамның қасақана бірлесуі.", simple: "Орындаушы, ұйымдастырушы, айдап салушы және көмекші.", example: "Әр қатысушының рөлі заңға сай бағаланады.", law: "ҚР ҚК 27-бабы" },
+        en: { title: "Complicity", short: "Intentional joint participation by two or more persons.", simple: "Covers perpetrator, organizer, instigator, and accomplice.", example: "Each participant's role is assessed under law.", law: "Art. 27 Criminal Code of RK" } },
+      { category: "criminal", icon: "#icon-gavel",
+        ru: { title: "Крайняя необходимость", short: "Устранение опасности, неустранимой иными средствами.", simple: "Причинённый вред меньше предотвращённого вреда.", example: "Действия в состоянии крайней необходимости при угрозе.", law: "Ст. 34 УК РК" },
+        kz: { title: "Амалсыздық (крайняя необходимость)", short: "Басқа жолмен жойылмайтын қауіпті жою.", simple: "Келтірілген зиян алдын алған зияннан аз болады.", example: "Төнген қауіпті жоюдағы амалсыздық әрекеті.", law: "ҚР ҚК 34-бабы" },
+        en: { title: "Necessity", short: "Preventing danger not avoidable by other means.", simple: "Harm caused must be less than harm prevented.", example: "Acting under necessity to avert greater harm.", law: "Art. 34 Criminal Code of RK" } },
+      { category: "criminal", icon: "#icon-shield",
+        ru: { title: "Освобождение от ответственности", short: "Предусмотренные законом основания прекращения преследования.", simple: "Например, примирение сторон в установленных законом случаях.", example: "Стороны достигли примирения в рамках закона.", law: "Ст. 68 УК РК" },
+        kz: { title: "Жауаптылықтан босату", short: "Заңда көзделген негіздер бойынша босату.", simple: "Мысалы, заңда белгіленген жағдайда татуласу.", example: "Тараптар заң шеңберінде татуласуға келді.", law: "ҚР ҚК 68-бабы" },
+        en: { title: "Exemption from Liability", short: "Statutory grounds to release from criminal liability.", simple: "Includes statutory reconciliation where permitted by law.", example: "Parties reconciled where allowed by statute.", law: "Art. 68 Criminal Code of RK" } },
+
+      { category: "constitutional", icon: "#icon-shield",
+        ru: { title: "Суверенитет", short: "Независимость государственной власти внутри страны и вовне.", simple: "Самостоятельность государства во внутренней и внешней политике.", example: "Казахстан самостоятельно проводит внутреннюю и внешнюю политику.", law: "Ст. 2 Конституции РК" },
+        kz: { title: "Егемендік", short: "Мемлекеттік биліктің ішкі және сыртқы тәуелсіздігі.", simple: "Мемлекеттің ішкі-сыртқы саясаттағы дербестігі.", example: "Қазақстан өз саясатын дербес жүргізеді.", law: "ҚР Конституциясы 2-бабы" },
+        en: { title: "Sovereignty", short: "Independent state authority at home and abroad.", simple: "Independence in domestic governance and foreign relations.", example: "Kazakhstan conducts independent domestic and foreign policy.", law: "Art. 2 Constitution of RK" } },
+      { category: "constitutional", icon: "#icon-scales",
+        ru: { title: "Конституция", short: "Основной закон высшей юридической силы.", simple: "Закрепляет права человека и основы власти в РК.", example: "Законы РК принимаются в соответствии с Конституцией.", law: "Ст. 4 Конституции РК" },
+        kz: { title: "Конституция", short: "Ең жоғары заңдық күші бар Ата Заң.", simple: "ҚР-дағы адам құқықтары мен билік негіздерін бекітеді.", example: "Заңдар Конституцияға сәйкес қабылданады.", law: "ҚР Конституциясы 4-бабы" },
+        en: { title: "Constitution", short: "Supreme law with highest legal force.", simple: "Establishes fundamental rights and state structure.", example: "Laws must align with the Constitution of RK.", law: "Art. 4 Constitution of RK" } },
+      { category: "constitutional", icon: "#icon-scroll",
+        ru: { title: "Гражданство РК", short: "Устойчивая правовая связь лица с государством.", simple: "Порождает взаимные права и обязанности гражданина и государства.", example: "Гражданин РК обладает конституционными правами и обязанностями.", law: "Ст. 10 Конституции РК" },
+        kz: { title: "ҚР азаматтығы", short: "Адамның мемлекетпен тұрақты құқықтық байланысы.", simple: "Азамат пен мемлекеттің өзара құқықтары мен міндеттері.", example: "ҚР азаматы конституциялық құқықтар мен міндеттерге ие.", law: "ҚР Конституциясы 10-бабы" },
+        en: { title: "Citizenship of RK", short: "Stable legal bond between an individual and the state.", simple: "Creates mutual rights and duties between citizen and state.", example: "Citizens hold constitutional rights and duties.", law: "Art. 10 Constitution of RK" } },
+      { category: "constitutional", icon: "#icon-gavel",
+        ru: { title: "Референдум", short: "Всенародное голосование по важным вопросам жизни страны.", simple: "Решения принятые на республиканском референдуме обязательны.", example: "Важные государственные вопросы могут выноситься на референдум.", law: "Закон РК о референдуме" },
+        kz: { title: "Референдум", short: "Ел өміріндегі маңызды мәселелер бойынша бүкілхалықтық дауыс беру.", simple: "Республикалық референдум шешімдері міндетті күшке ие.", example: "Маңызды мәселелер референдумға шығарылуы мүмкін.", law: "ҚР Референдум заңы" },
+        en: { title: "Referendum", short: "Public vote on significant matters of state.", simple: "Decisions adopted by referendum are binding.", example: "Key public questions may be put to a referendum.", law: "RK Referendum Law" } },
+      { category: "constitutional", icon: "#icon-shield",
+        ru: { title: "Неприкосновенность жилища", short: "Гарантия защиты жилища от незаконного проникновения.", simple: "Проникновение допускается только в случаях и порядке закона.", example: "Жилище охраняется Конституцией РК.", law: "Ст. 25 Конституции РК" },
+        kz: { title: "Тұрғын үйге қол сұғылмаушылық", short: "Тұрғын үйді заңсыз кіруден қорғау кепілдігі.", simple: "Заңда көзделген жағдайларда ғана рұқсат етіледі.", example: "Тұрғын үйге қол сұғылмаушылық Конституциямен қорғалған.", law: "ҚР Конституциясы 25-бабы" },
+        en: { title: "Inviolability of Home", short: "Protection of home against unlawful entry.", simple: "Entry is permitted only in cases and manner prescribed by law.", example: "The home is protected under Art. 25 of RK Constitution.", law: "Art. 25 Constitution of RK" } }
+    ];
+
+    let currentLang = "ru";
+    let activePage = "home";
+    let activeCategoryKey = "civil";
+    let quizQuestions = [];
+    let quizIdx = 0;
+    let quizScore = 0;
+    let quizAnswered = false;
+    let quizHistory = [];
+
+    const views = {
+      home: document.getElementById("view-home"),
+      category: document.getElementById("view-category"),
+      quiz: document.getElementById("view-quiz"),
+      sources: document.getElementById("view-sources")
+    };
+
+    function attachTiltEffect(el, maxTilt = 7) {
+      el.addEventListener("mousemove", (e) => {
+        const rect = el.getBoundingClientRect();
+        const x = (e.clientX - rect.left) / rect.width - 0.5;
+        const y = (e.clientY - rect.top) / rect.height - 0.5;
+        el.style.transform = `rotateX(${(-y * maxTilt).toFixed(2)}deg) rotateY(${(x * maxTilt).toFixed(2)}deg)`;
+      });
+      el.addEventListener("mouseleave", () => {
+        el.style.transform = "rotateX(0deg) rotateY(0deg)";
+      });
+    }
+
+    function shuffleArray(arr) {
+      const copy = [...arr];
+      for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+      }
+      return copy;
+    }
+
+    function buildShuffledQuiz() {
+      const base = i18n[currentLang].quiz;
+      quizQuestions = shuffleArray(base).map(item => {
+        const indexedOpts = item.opts.map((text, idx) => ({ text, isCorrect: idx === item.ans }));
+        const shuffledOpts = shuffleArray(indexedOpts);
+        return {
+          q: item.q,
+          opts: shuffledOpts.map(o => o.text),
+          ans: shuffledOpts.findIndex(o => o.isCorrect),
+          exp: item.exp
+        };
+      });
+      quizIdx = 0;
+      quizScore = 0;
+      quizAnswered = false;
+      quizHistory = [];
+    }
+
+    function switchPage(pageName, categoryKey = null) {
+      activePage = pageName;
+      Object.values(views).forEach(v => v.classList.remove("active"));
+      views[pageName].classList.add("active");
+
+      document.querySelectorAll(".tab-link").forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.page === (pageName === "category" ? "home" : pageName));
+      });
+
+      if (pageName === "category" && categoryKey) {
+        activeCategoryKey = categoryKey;
+        renderCategoryPage();
+      } else if (pageName === "quiz") {
+        buildShuffledQuiz();
+        renderQuiz();
+      }
+
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function createFlipCard(item) {
+      const t = i18n[currentLang];
+      const entry = item[currentLang];
+      const catInfo = t.categories[item.category];
+
+      const card = document.createElement("div");
+      card.className = "flip-card";
+
+      const tiltBox = document.createElement("div");
+      tiltBox.className = "flip-card-tilt";
+
+      tiltBox.innerHTML = `
+        <div class="flip-card-inner">
+          <div class="flip-face flip-front">
+            <div>
+              <div class="card-top">
+                <span class="badge">${catInfo.name}</span>
+                <span style="color: var(--gold);"><svg width="17" height="17"><use href="${item.icon}"/></svg></span>
+              </div>
+              <h3>${entry.title}</h3>
+              <p>${entry.short}</p>
+            </div>
+            <div class="flip-hint">${t.flipToBack}</div>
+          </div>
+          <div class="flip-face flip-back">
+            <div class="flip-back-title">
+              <span>${entry.title}</span>
+              <span style="font-size: 0.74rem; color: var(--text-muted);">${t.flipToFront}</span>
+            </div>
+            <p>${entry.simple}</p>
+            <div class="flip-example"><strong>${t.exampleLabel}</strong> ${entry.example}</div>
+            <div class="flip-law">${entry.law}</div>
+          </div>
+        </div>
+      `;
+
+      attachTiltEffect(tiltBox, 6);
+      card.appendChild(tiltBox);
+      card.addEventListener("click", () => card.classList.toggle("flipped"));
+      return card;
+    }
+
+    function renderBranches() {
+      const t = i18n[currentLang];
+      const branchGrid = document.getElementById("branchGrid");
+      branchGrid.innerHTML = "";
+
+      Object.entries(t.categories).forEach(([key, info]) => {
+        const count = termsData.filter(item => item.category === key).length;
+        const portal = document.createElement("div");
+        portal.className = "branch-portal";
+        portal.innerHTML = `
+          <div class="branch-icon-box" style="background: ${info.gradient};">
+            <svg width="24" height="24"><use href="${info.icon}"/></svg>
+          </div>
+          <div class="branch-info">
+            <h3>${info.name} <span style="font-size: 0.78rem; color: var(--gold);">(${count})</span></h3>
+            <p>${info.desc}</p>
+          </div>
+        `;
+        attachTiltEffect(portal, 6);
+        portal.addEventListener("click", () => switchPage("category", key));
+        branchGrid.appendChild(portal);
+      });
+    }
+
+    function renderCategoryPage() {
+      const t = i18n[currentLang];
+      const catInfo = t.categories[activeCategoryKey];
+      const banner = document.getElementById("catPageBanner");
+      banner.style.background = catInfo.gradient;
+
+      document.getElementById("catBreadcrumb").textContent = `${t.tabHome} / ${catInfo.name}`;
+      document.getElementById("catPageTitle").textContent = catInfo.name;
+      document.getElementById("catPageDesc").textContent = catInfo.desc;
+
+      const catGrid = document.getElementById("catCardsGrid");
+      catGrid.innerHTML = "";
+      termsData.filter(item => item.category === activeCategoryKey).forEach(item => {
+        catGrid.appendChild(createFlipCard(item));
+      });
+    }
+
+    function renderHomeSearch() {
+      const t = i18n[currentLang];
+      const q = document.getElementById("searchInput").value.trim().toLowerCase();
+      const box = document.getElementById("homeSearchResults");
+      const homeGrid = document.getElementById("homeCardsGrid");
+
+      if (!q) {
+        box.style.display = "none";
+        return;
+      }
+
+      box.style.display = "block";
+      homeGrid.innerHTML = "";
+      const matches = termsData.filter(item => {
+        const entry = item[currentLang];
+        return (
+          entry.title.toLowerCase().includes(q) ||
+          entry.short.toLowerCase().includes(q) ||
+          entry.simple.toLowerCase().includes(q)
+        );
+      });
+
+      document.getElementById("searchResultsTitle").textContent = `${t.searchResultsTitle} ${matches.length}`;
+
+      if (matches.length === 0) {
+        homeGrid.innerHTML = `<div class="empty-state">${t.emptyText}</div>`;
+        return;
+      }
+
+      matches.forEach(item => homeGrid.appendChild(createFlipCard(item)));
+    }
+
+    function renderSourcesPage() {
+      const t = i18n[currentLang];
+      document.getElementById("srcBreadcrumb").textContent = `${t.tabHome} / ${t.tabSources}`;
+      document.getElementById("srcPageTitle").textContent = t.srcPageTitle;
+      document.getElementById("srcPageDesc").textContent = t.srcPageDesc;
+
+      const list = document.getElementById("sourcesList");
+      list.innerHTML = t.sources.map(s => `
+        <li>
+          <span style="font-weight: 600; font-size: 0.9rem;">${s.title}</span>
+          <a href="${s.url}" target="_blank" rel="noopener">adilet.zan.kz ↗</a>
+        </li>
+      `).join("");
+    }
+
+    function renderQuiz() {
+      const t = i18n[currentLang];
+      const total = quizQuestions.length;
+      const qProgress = document.getElementById("quizProgress");
+      const qScore = document.getElementById("quizLiveScore");
+      const qBar = document.getElementById("quizProgressBar");
+      const qText = document.getElementById("quizQuestion");
+      const qOpts = document.getElementById("quizOptions");
+      const qFeed = document.getElementById("quizFeedback");
+      const reviewWrap = document.getElementById("quizReviewWrap");
+      const reviewList = document.getElementById("quizReviewList");
+      const nextBtn = document.getElementById("quizNextBtn");
+
+      qFeed.style.display = "none";
+      reviewWrap.style.display = "none";
+      nextBtn.style.display = "none";
+      quizAnswered = false;
+      qScore.textContent = `${t.scorePrefix} ${quizScore} / ${total}`;
+
+      if (quizIdx >= total) {
+        qBar.style.width = "100%";
+        const pct = Math.round((quizScore / total) * 100);
+        qProgress.textContent = "100%";
+        qText.textContent = `${t.quizScoreTitle} ${quizScore} / ${total} (${pct}%)`;
+        qOpts.innerHTML = "";
+        document.getElementById("reviewHeading").textContent = t.reviewHeading;
+
+        reviewList.innerHTML = quizHistory.map((h, i) => `
+          <div class="review-item ${h.isRight ? "ok" : "err"}">
+            <div style="font-weight: 700; margin-bottom: 4px;">${i + 1}. ${h.question}</div>
+            <div>${t.yourAns} <strong>${h.chosen}</strong></div>
+            ${!h.isRight ? `<div>${t.rightAns} <strong>${h.correct}</strong></div>` : ""}
+            <div style="color: var(--text-muted); margin-top: 4px;">${h.exp}</div>
+          </div>
+        `).join("");
+
+        reviewWrap.style.display = "block";
+        nextBtn.textContent = t.quizRestart;
+        nextBtn.style.display = "inline-flex";
+        return;
+      }
+
+      qBar.style.width = `${((quizIdx + 1) / total) * 100}%`;
+      qProgress.textContent = `${quizIdx + 1} / ${total}`;
+      const currentQ = quizQuestions[quizIdx];
+      qText.textContent = currentQ.q;
+      qOpts.innerHTML = "";
+
+      currentQ.opts.forEach((optText, i) => {
+        const btn = document.createElement("button");
+        btn.type = "button";
+        btn.className = "quiz-opt";
+        btn.textContent = optText;
+        btn.addEventListener("click", () => {
+          if (quizAnswered) return;
+          quizAnswered = true;
+          const isRight = i === currentQ.ans;
+          if (isRight) quizScore++;
+
+          quizHistory.push({
+            question: currentQ.q,
+            chosen: optText,
+            correct: currentQ.opts[currentQ.ans],
+            isRight,
+            exp: currentQ.exp
+          });
+
+          const allBtns = qOpts.querySelectorAll(".quiz-opt");
+          allBtns.forEach((b, idx) => {
+            b.disabled = true;
+            if (idx === currentQ.ans) b.classList.add("correct");
+          });
+          if (!isRight) btn.classList.add("wrong");
+
+          qScore.textContent = `${t.scorePrefix} ${quizScore} / ${total}`;
+          qFeed.textContent = currentQ.exp;
+          qFeed.style.display = "block";
+          nextBtn.textContent = quizIdx === total - 1 ? t.quizFinish : t.quizNext;
+          nextBtn.style.display = "inline-flex";
+        });
+        qOpts.appendChild(btn);
+      });
+    }
+
+    document.getElementById("quizNextBtn").addEventListener("click", () => {
+      if (quizIdx >= quizQuestions.length) {
+        buildShuffledQuiz();
+      } else {
+        quizIdx++;
+      }
+      renderQuiz();
+    });
+
+    function applyLanguage(lang) {
+      currentLang = lang;
+      document.documentElement.lang = lang;
+      document.querySelectorAll(".lang-btn").forEach(btn => {
+        btn.classList.toggle("active", btn.dataset.lang === lang);
+      });
+
+      const t = i18n[lang];
+      document.getElementById("brandName").textContent = t.brand;
+      document.getElementById("tabHome").textContent = t.tabHome;
+      document.getElementById("tabQuiz").textContent = t.tabQuiz;
+      document.getElementById("tabSources").textContent = t.tabSources;
+      document.getElementById("heroBadge").textContent = t.heroBadge;
+      document.getElementById("heroTitle").textContent = t.heroTitle;
+      document.getElementById("heroSubtitle").textContent = t.heroSubtitle;
+      document.getElementById("searchInput").placeholder = t.searchPlaceholder;
+      document.getElementById("quizPromoTitle").textContent = t.quizPromoTitle;
+      document.getElementById("quizPromoDesc").textContent = t.quizPromoDesc;
+      document.getElementById("quizPromoBtnText").textContent = t.quizPromoBtn;
+      document.getElementById("branchesTitle").lastElementChild.textContent = t.branchesTitle;
+      document.getElementById("backFromCatBtn").textContent = t.backHome;
+      document.getElementById("backFromSrcBtn").textContent = t.backHome;
+      document.getElementById("quizBackHome").textContent = t.backHome;
+      document.getElementById("footerBrand").textContent = t.brand;
+      document.getElementById("footerDisclaimer").textContent = t.disclaimer;
+      document.getElementById("footerDate").textContent = t.dateText;
+      document.getElementById("footerNoData").textContent = t.noDataText;
+
+      const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+      document.getElementById("themeLabel").textContent = isDark ? t.lightTheme : t.darkTheme;
+
+      renderBranches();
+      renderHomeSearch();
+      renderSourcesPage();
+      if (activePage === "category") renderCategoryPage();
+      if (activePage === "quiz") {
+        buildShuffledQuiz();
+        renderQuiz();
+      }
+    }
+
+    document.getElementById("themeToggle").addEventListener("click", () => {
+      const current = document.documentElement.getAttribute("data-theme");
+      const next = current === "dark" ? "light" : "dark";
+      document.documentElement.setAttribute("data-theme", next);
+      document.getElementById("themeIcon").textContent = next === "dark" ? "☀️" : "🌙";
+      applyLanguage(currentLang);
+    });
+
+    document.querySelectorAll(".lang-btn").forEach(btn => {
+      btn.addEventListener("click", () => applyLanguage(btn.dataset.lang));
+    });
+
+    document.querySelectorAll(".tab-link").forEach(btn => {
+      btn.addEventListener("click", () => switchPage(btn.dataset.page));
+    });
+
+    document.getElementById("logoHome").addEventListener("click", () => switchPage("home"));
+    document.getElementById("openQuizBtn").addEventListener("click", () => switchPage("quiz"));
+    document.getElementById("backFromCatBtn").addEventListener("click", () => switchPage("home"));
+    document.getElementById("backFromSrcBtn").addEventListener("click", () => switchPage("home"));
+    document.getElementById("quizBackHome").addEventListener("click", () => switchPage("home"));
+    document.getElementById("searchInput").addEventListener("input", renderHomeSearch);
+
+    applyLanguage("ru");
+  </script>
+</body>
+</html>
